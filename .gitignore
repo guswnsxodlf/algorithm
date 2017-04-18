@@ -105,3 +105,6 @@ hs_err_pid*
 # Custom
 .idea/
 Test.*
+a.out
+input*.txt
+
