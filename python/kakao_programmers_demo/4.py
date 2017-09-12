@@ -1,4 +1,6 @@
 # Created by Jello on 2017. 9. 11.
+# 해결 안됨
+
 
 # 특정 점에서 우측 하단으로 정사각형 최대 길이 측정
 def find_length(board, i, j):

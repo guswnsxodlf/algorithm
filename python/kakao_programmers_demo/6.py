@@ -1,4 +1,5 @@
 # Created by Jello on 2017. 9. 12.
+# 해결 안됨
 
 def get(arr, s, e):
     length = e-s

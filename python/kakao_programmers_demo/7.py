@@ -1,3 +1,5 @@
+# 해결 안됨
+
 def dfs(strs, t, cur_str, cnt, cur_min):
 	# print('{}, {}'.format(cur_str, cnt))
 	if cur_min <= cnt:
