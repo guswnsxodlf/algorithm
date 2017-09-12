@@ -1,5 +1,7 @@
-def dfs(strs, t, cur_str, cnt):
+def dfs(strs, t, cur_str, cnt, cur_min):
 	# print('{}, {}'.format(cur_str, cnt))
+	if cur_min <= cnt:
+		return 20001
 	if cur_str == t:
 		return cnt
 
@@ -19,7 +21,9 @@ def dfs(strs, t, cur_str, cnt):
 
 		if checked:
 			nothing = False
-			result_arr.append(dfs(strs, t, cur_str+s, cnt+1))
+			r = dfs(strs, t, cur_str+s, cnt+1, cur_min)
+			cur_min = min(cur_min, r)
+			result_arr.append(r)
 
 	if nothing:
 		return 20001
@@ -27,7 +31,7 @@ def dfs(strs, t, cur_str, cnt):
 	return min(result_arr)
 
 def solution(strs, t):
-	result = dfs(strs, t, '', 0)
+	result = dfs(strs, t, '', 0, 20001)
 	if result == 20001:
 		result = -1
 	return result
