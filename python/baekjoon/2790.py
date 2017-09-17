@@ -3,23 +3,38 @@ import sys
 
 N = int(sys.stdin.readline())
 arr = []
-max_cnt = 0
-max_score = 0
+reverse_max_arr = [0] * N
+reverse_max_value = 0
+prev_value = 0
+prev_state = False
 result = 0
 
 for i in range(N):
-    data = int(sys.stdin.readline())
-    arr.append(data)
-    if max_score == data:
-        max_cnt += 1
-    elif data > max_score:
-        max_score = data
-        max_cnt = 1
+    arr.append(int(sys.stdin.readline()))
+arr.sort()
+print(arr)
 
-print(max_score, max_cnt)
+for i in range(N):
+    if i == 0:
+        reverse_max_arr[-(i+1)] = arr[-(i+1)] + (i+1)
+    else:
+        reverse_max_arr[-(i+1)] = max(reverse_max_arr[-i], arr[-(i+1)] + (i+1))
+print(reverse_max_arr)
 
-for n in arr:
-    if n + N >= max_score + max_cnt:
-        result += 1
+for i in range(N):
+    if arr[i] != prev_value:
+        print('{} + {}'.format(arr[i], N))
+        if arr[i] == arr[-1] or arr[i] + N >= reverse_max_arr[i+1]:
+            result += 1
+            prev_state = True
+        else:
+            prev_state = False
 
-print(result)
+        prev_value = arr[i]
+
+    else:
+        print('prev_state: {}'.format(prev_state))
+        if prev_state:
+            result += 1
+
+sys.stdout.write(str(result))
