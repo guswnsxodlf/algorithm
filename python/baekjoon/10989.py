@@ -1,19 +1,15 @@
 # Created by Jello on 2017. 9. 15.
 import sys
 
-MAX = 10000
+MAX = 10001
 
 N = int(sys.stdin.readline())
-arr_map = {}
+arr = [0] * MAX
 
 for i in range(N):
     d = int(sys.stdin.readline())
-    if d in arr_map:
-        arr_map[d] += 1
-    else:
-        arr_map[d] = 1
+    arr[d] += 1
 
-for i in range(MAX+1):
-    if i in arr_map:
-        for j in range(arr_map[i]):
-            print(i)
+for i in range(MAX):
+	for j in range(arr[i]):
+		print(i)
