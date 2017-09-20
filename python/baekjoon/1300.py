@@ -1,6 +1,5 @@
 # Created by Jello on 2017. 9. 20.
 import sys
-import time
 
 N = int(sys.stdin.readline())
 K = int(sys.stdin.readline())
@@ -25,6 +24,5 @@ while True:
         left = mid + 1
     elif cnt_lower >= K:
         right = mid - 1
-    time.sleep(0.3)
 
 sys.stdout.write(str(mid))
