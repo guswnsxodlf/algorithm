@@ -1,32 +1,30 @@
 # Created by Jello on 2017. 9. 20.
 import sys
-
-def get_sum(n):
-    if n <= N + 1:
-        i = n-1
-        return int(i * (i + 1) / 2)
-    else:
-        i = (2 * N) - n
-        return int((N * (N - 1)) + N - (i * (i + 1) / 2))
+import time
 
 N = int(sys.stdin.readline())
 K = int(sys.stdin.readline())
 
-n = 2
-while get_sum(n) < K:
-    n += 1
+right = min(1000000000, N * N)
+left = 1
+mid = None
 
-num_of_n = N - abs(N - (n - 1))
-idx = (K - get_sum(n-1))
+while True:
+    mid = (right + left) // 2
+    print(mid)
+    cnt_upper = 0
+    cnt_lower = 0
+    for i in range(1, N+1):
+        cnt_upper += min(mid // i, N)
+        cnt_lower += min((mid-1) // i, N)
 
-print(n, num_of_n, idx)
+    print('cnt = {}, {}'.format(cnt_lower, cnt_upper))
+    if cnt_lower < K <= cnt_upper:
+        break
+    elif cnt_upper < K:
+        left = mid + 1
+    elif cnt_lower >= K:
+        right = mid - 1
+    time.sleep(0.3)
 
-if n <= N + 1:
-    i = ((idx-1) // 2) + 1
-else:
-    i = N - ((idx-1) // 2)
-
-j = n - i
-print(i, j)
-
-sys.stdout.write(str(i * j))
+sys.stdout.write(str(mid))
